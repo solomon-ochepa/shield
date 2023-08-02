@@ -138,7 +138,8 @@ class CreateAuthTables extends Migration
             'id'         => ['type' => 'int', 'constraint' => 11, 'unsigned' => true, 'auto_increment' => true],
             'user_id'    => ['type' => 'int', 'constraint' => 11, 'unsigned' => true],
             'group'      => ['type' => 'varchar', 'constraint' => 255, 'null' => false],
-            'created_at' => ['type' => 'datetime', 'null' => false],
+            'created_at' => ['type' => 'datetime', 'null' => true],
+            'updated_at' => ['type' => 'datetime', 'null' => true],
         ]);
         $this->forge->addPrimaryKey('id');
         $this->forge->addForeignKey('user_id', $this->tables['users'], 'id', '', 'CASCADE');
@@ -149,7 +150,8 @@ class CreateAuthTables extends Migration
             'id'         => ['type' => 'int', 'constraint' => 11, 'unsigned' => true, 'auto_increment' => true],
             'user_id'    => ['type' => 'int', 'constraint' => 11, 'unsigned' => true],
             'permission' => ['type' => 'varchar', 'constraint' => 255, 'null' => false],
-            'created_at' => ['type' => 'datetime', 'null' => false],
+            'created_at' => ['type' => 'datetime', 'null' => true],
+            'updated_at' => ['type' => 'datetime', 'null' => true],
         ]);
         $this->forge->addPrimaryKey('id');
         $this->forge->addForeignKey('user_id', $this->tables['users'], 'id', '', 'CASCADE');

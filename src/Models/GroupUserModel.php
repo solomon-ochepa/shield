@@ -6,7 +6,7 @@ namespace CodeIgniter\Shield\Models;
 
 use CodeIgniter\Shield\Entities\User;
 
-class GroupModel extends BaseModel
+class GroupUserModel extends BaseModel
 {
     protected $primaryKey     = 'id';
     protected $returnType     = 'array';
@@ -14,9 +14,8 @@ class GroupModel extends BaseModel
     protected $allowedFields  = [
         'user_id',
         'group',
-        'created_at',
     ];
-    protected $useTimestamps      = false;
+    protected $useTimestamps      = true;
     protected $validationRules    = [];
     protected $validationMessages = [];
     protected $skipValidation     = false;

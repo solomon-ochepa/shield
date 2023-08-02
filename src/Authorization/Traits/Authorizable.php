@@ -7,7 +7,7 @@ namespace CodeIgniter\Shield\Authorization\Traits;
 use CodeIgniter\I18n\Time;
 use CodeIgniter\Shield\Authorization\AuthorizationException;
 use CodeIgniter\Shield\Exceptions\LogicException;
-use CodeIgniter\Shield\Models\GroupModel;
+use CodeIgniter\Shield\Models\GroupUserModel;
 use CodeIgniter\Shield\Models\PermissionModel;
 
 trait Authorizable
@@ -302,10 +302,10 @@ trait Authorizable
             return;
         }
 
-        /** @var GroupModel $groupModel */
-        $groupModel = model(GroupModel::class);
+        /** @var GroupUserModel $groupUserModel */
+        $groupUserModel = model(GroupUserModel::class);
 
-        $this->groupCache = $groupModel->getForUser($this);
+        $this->groupCache = $groupUserModel->getForUser($this);
     }
 
     /**
@@ -329,8 +329,8 @@ trait Authorizable
      */
     private function saveGroups(): void
     {
-        /** @var GroupModel $model */
-        $model = model(GroupModel::class);
+        /** @var GroupUserModel $model */
+        $model = model(GroupUserModel::class);
 
         $cache = $this->groupCache;
 
@@ -352,7 +352,7 @@ trait Authorizable
 
     /**
      * @phpstan-param 'group'|'permission' $type
-     * @param GroupModel|PermissionModel $model
+     * @param GroupUserModel|PermissionModel $model
      */
     private function saveGroupsOrPermissions(string $type, $model, array $cache): void
     {

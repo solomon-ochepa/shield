@@ -11,7 +11,7 @@
   <file src="src/Controllers/MagicLinkController.php">
     <ReservedWord occurrences="1"/>
   </file>
-  <file src="src/Models/GroupModel.php">
+  <file src="src/Models/GroupUserModel.php">
     <ReservedWord occurrences="1"/>
   </file>
 </files>

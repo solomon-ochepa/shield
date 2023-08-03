@@ -79,6 +79,7 @@ class Auth extends BaseConfig
         'permissions_users' => 'auth_permissions_users',
         'groups'            => 'auth_groups',
         'groups_users'      => 'auth_groups_users',
+        'groups_permissions' => 'auth_groups_permissions',
     ];
 
     /**

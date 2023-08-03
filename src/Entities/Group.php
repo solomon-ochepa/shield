@@ -45,6 +45,18 @@ class Group extends Entity
         return $users;
     }
 
+    public function getPermissions(): array
+    {
+        $permissions = model(GroupModel::class)->query(
+            "SELECT {$this->tables['permissions']}.*
+            FROM {$this->tables['permissions']}
+            JOIN {$this->tables['groups_permissions']} ON {$this->tables['permissions']}.title = {$this->tables['groups_permissions']}.permission
+            where {$this->tables['groups_permissions']}.group = '{$this->slug}'"
+        )->getResultObject();
+
+        return $permissions;
+    }
+
     /**
      * Returns the permissions for this group.
      */

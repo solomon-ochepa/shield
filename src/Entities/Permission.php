@@ -38,4 +38,18 @@ class Permission extends Entity
 
         return $users;
     }
+
+    public function getGroups()
+    {
+        $permissions = model(PermissionModel::class);
+
+        $groups = $permissions->query(
+            "SELECT {$this->tables['groups']}.*
+            FROM {$this->tables['groups']}
+            JOIN {$this->tables['groups_permissions']} ON {$this->tables['groups']}.slug = {$this->tables['groups_permissions']}.group
+            where {$this->tables['groups_permissions']}.permission LIKE '%{$this->title}%'"
+        )->getResultObject();
+
+        return $groups;
+    }
 }

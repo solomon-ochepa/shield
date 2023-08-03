@@ -75,8 +75,9 @@ class Auth extends BaseConfig
         'logins'            => 'auth_logins',
         'token_logins'      => 'auth_token_logins',
         'remember_tokens'   => 'auth_remember_tokens',
-        'groups_users'      => 'auth_groups_users',
         'permissions_users' => 'auth_permissions_users',
+        'groups'            => 'auth_groups',
+        'groups_users'      => 'auth_groups_users',
     ];
 
     /**

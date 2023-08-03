@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace CodeIgniter\Shield\Entities;
 
 use CodeIgniter\Entity\Entity;
+use CodeIgniter\Shield\Models\GroupModel;
 
 /**
  * Represents a single User Group
@@ -13,6 +14,36 @@ use CodeIgniter\Entity\Entity;
 class Group extends Entity
 {
     protected ?array $permissions = null;
+
+    /**
+     * Auth Table names
+     */
+    private array $tables;
+
+    public function __construct(?array $data = null)
+    {
+        /** @var Auth $authConfig */
+        $authConfig = config('Auth');
+
+        parent::__construct($data);
+
+        $this->tables = $authConfig->tables;
+    }
+
+    /**
+     * Returns the group users.
+     */
+    public function getUsers(): array
+    {
+        $users = model(GroupModel::class)->query(
+            "SELECT {$this->tables['users']}.*
+            FROM {$this->tables['users']}
+            JOIN {$this->tables['groups_users']} ON {$this->tables['users']}.id = {$this->tables['groups_users']}.user_id
+            where {$this->tables['groups_users']}.group = '{$this->slug}'"
+        )->getResultObject();
+
+        return $users;
+    }
 
     /**
      * Returns the permissions for this group.
